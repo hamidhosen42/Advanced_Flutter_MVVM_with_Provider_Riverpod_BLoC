@@ -8,8 +8,8 @@ import '../model/genres_model.dart';
 class ApiService {
   Future<List<MovieModel>> fetchMovies({int page = 1}) async {
     final url = Uri.parse(
-        "${ApiConstants.baseUrl}/movie/popular?language=en-US&page=1");
-    final response = await http.get(url, headers: ApiConstants.header);
+        "${ApiConstants.baseUrl}/movie/popular?language=en-US&page=$page");
+    final response = await http.get(url, headers: ApiConstants.header).timeout(const Duration(seconds: 10));
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
@@ -24,7 +24,7 @@ class ApiService {
   Future<List<GenreModel>> fetchGenres() async {
     final url =
         Uri.parse("${ApiConstants.baseUrl}/genre/movie/list?language=en");
-    final response = await http.get(url, headers: ApiConstants.header);
+    final response = await http.get(url, headers: ApiConstants.header).timeout(const Duration(seconds: 10));
 
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
