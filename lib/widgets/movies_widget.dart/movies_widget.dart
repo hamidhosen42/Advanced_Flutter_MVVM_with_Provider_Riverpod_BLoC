@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:mvvm_statemanagements/constants/my_app_constants.dart';
 
 import '../../constants/my_app_icons.dart';
+import '../../screen/favorites_screen.dart';
+import '../../service/init_getit.dart';
+import '../../service/navigation_service.dart';
 import '../cached_image.dart';
 import 'favorite_btn.dart';
+import 'genres_list_widget.dart';
 
 class MoviesWidget extends StatelessWidget {
   const MoviesWidget({super.key});
@@ -16,7 +20,9 @@ class MoviesWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(12.0),
         child: InkWell(
           borderRadius: BorderRadius.circular(12.0),
-          onTap: () {},
+          onTap: () {
+            getIt<NavigationService>().navigate(const FavoritesScreen());
+          },
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: IntrinsicWidth(
@@ -53,7 +59,7 @@ class MoviesWidget extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(height: 10),
-                        // const GenresListWidget(),
+                        const GenresListWidget(),
                         Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
