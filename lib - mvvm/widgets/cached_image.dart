@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 import 'package:mvvm_statemanagements/constants/my_app_icons.dart';
 
 class CachedImageWidget extends StatelessWidget {
@@ -9,6 +9,7 @@ class CachedImageWidget extends StatelessWidget {
       this.imgHeight,
       this.imgWidth,
       this.boxFit});
+
   final String imgUrl;
   final double? imgHeight;
   final double? imgWidth;
@@ -20,12 +21,10 @@ class CachedImageWidget extends StatelessWidget {
     return CachedNetworkImage(
       height: imgHeight ?? size.width * 0.3,
       width: imgWidth ?? size.width * 0.2,
-      imageUrl: imgUrl, //?? ,
+      imageUrl: imgUrl,
       fit: boxFit ?? BoxFit.cover,
-      errorWidget: (context, url, error) => const Icon(
-        MyAppIcons.error,
-        color: Colors.red,
-      ),
+      // placeholder: (context, url) => const CircularProgressIndicato r(),
+      errorWidget: (context, url, error) => const Icon(MyAppIcons.error),
     );
   }
 }
